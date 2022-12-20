@@ -14,6 +14,23 @@ public class Water extends Cell {
         Cell[][] neighbors = grid.findNeighbors(x, y);
         Point direction = new Point();
 
+        if (neighbors[1][2].isBurning() || neighbors[1][0].isBurning() || neighbors[0][1].isBurning() ||
+                neighbors[2][1].isBurning()) {
+            grid.setCell(x, y, new Smoke());
+            if (neighbors[1][2].isBurning()) {
+                neighbors[1][2].heatPoints--;
+            }
+            if (neighbors[1][0].isBurning()) {
+                neighbors[1][0].heatPoints--;
+            }
+            if (neighbors[0][1].isBurning()) {
+                neighbors[0][1].heatPoints--;
+            }
+            if (neighbors[2][1].isBurning()) {
+                neighbors[2][1].heatPoints--;
+            }
+        }
+
         if (CellTypes.isGas(neighbors[1][2].getType())) {
             direction.y++;
         } else if (CellTypes.isGas(neighbors[0][1].getType()) && CellTypes.isGas(neighbors[2][1].getType())) {
@@ -24,9 +41,7 @@ public class Water extends Cell {
             direction.x--;
         }
 
-        if (direction.x != 0 || direction.y != 0) {
-            grid.switchCells(x, y, x + direction.x, y + direction.y);
-        }
+        grid.switchCells(x, y, x + direction.x, y + direction.y);
     }
 
 }

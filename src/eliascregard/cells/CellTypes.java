@@ -5,31 +5,34 @@ public class CellTypes {
     public static final Class<? extends Cell> WATER = Water.class;
     public static final Class<? extends Cell> SAND = Sand.class;
     public static final Class<? extends Cell> EDGE = Edge.class;
-    public static final Class<? extends Cell> IRON = Iron.class;
+    public static final Class<? extends Cell> STEEL = Steel.class;
     public static final Class<? extends Cell> WOOD = Wood.class;
     public static final Class<? extends Cell> THERMITE = Thermite.class;
     public static final Class<? extends Cell> SMOKE = Smoke.class;
     public static final Class<? extends Cell> LAVA = Lava.class;
+    public static final Class<? extends Cell> OBSIDIAN = Obsidian.class;
 
     private static final Class<? extends Cell>[] TYPES = new Class[] {
             AIR,
             WATER,
             SAND,
             EDGE,
-            IRON,
+            STEEL,
             WOOD,
             THERMITE,
             SMOKE,
-            LAVA
+            LAVA,
+            OBSIDIAN
     };
 
     private static final Class<? extends Cell>[] SOLIDS = new Class[] {
             SAND,
             EDGE,
-            IRON,
+            STEEL,
             WOOD,
             THERMITE,
-            LAVA
+            LAVA,
+            OBSIDIAN
     };
 
     private static final Class<? extends Cell>[] LIQUIDS = new Class[] {

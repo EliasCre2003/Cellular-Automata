@@ -17,6 +17,11 @@ public class Thermite extends Cell {
     }
 
     public void update(CellGrid grid, int x, int y) {
+
+        if (heatPoints <= 0) {
+            setBurning(false);
+        }
+
         Cell[][] neighbors = grid.findNeighbors(x, y);
         Point direction = new Point();
         if (isBurning && Math.random() < 0.002) {
@@ -25,15 +30,17 @@ public class Thermite extends Cell {
         if (neighbors[1][2].isBurning() || neighbors[1][0].isBurning() || neighbors[0][1].isBurning() ||
             neighbors[2][1].isBurning()) {
             setBurning(true);
+            grid.updatePixel(x, y);
         }
         if (!CellTypes.isSolid(neighbors[1][2].getType())) {
             direction.y++;
         }
         else {
-            if (neighbors[1][2].getType() == CellTypes.IRON && !isBurning) {
+            if (neighbors[1][2].getType() == CellTypes.STEEL && !isBurning) {
                 setBurning(true);
+                grid.updatePixel(x, y);
             }
-            else if (neighbors[1][2].getType() == CellTypes.IRON && isBurning) {
+            else if (neighbors[1][2].getType() == CellTypes.STEEL && isBurning) {
                 if (Math.random() < 0.01) {
                     grid.setCell(x, y + 1, new Air());
                     direction.y++;
@@ -57,8 +64,10 @@ public class Thermite extends Cell {
         isBurning = burning;
         if (burning) {
             color = COLORS[1];
+            heatPoints = 10;
         } else {
             color = COLORS[0];
+            heatPoints = 0;
         }
     }
 

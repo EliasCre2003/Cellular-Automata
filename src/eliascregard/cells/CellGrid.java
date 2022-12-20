@@ -7,6 +7,7 @@ public class CellGrid {
     private final Cell[][] cells;
     private final PixelGrid pixelGrid;
     private final int width, height;
+    private double temperature;
 
     public CellGrid(int width, int height) {
         cells = new Cell[width][height];
@@ -46,6 +47,7 @@ public class CellGrid {
         CellGrid tempCells = this.copy();
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
+//                if (tempCells.cells[i][j].getType() == CellTypes.AIR) continue;
                 tempCells.cells[i][j].update(this, i, j);
             }
         }

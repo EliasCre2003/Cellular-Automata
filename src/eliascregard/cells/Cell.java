@@ -5,6 +5,7 @@ import java.awt.*;
 public class Cell {
 
     protected Color color;
+    protected int heatPoints;
 
     public Point update(Cell[][] neighbors) {
         return new Point();

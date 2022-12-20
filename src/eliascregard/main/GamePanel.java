@@ -15,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class GamePanel extends JPanel implements Runnable {
     private Dimension WINDOW_SIZE = Main.WINDOW_SIZE;
-    private final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1000, 1000);
+    private final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1600, 900);
     private double WINDOW_SCALE = (double) WINDOW_SIZE.width / DEFAULT_WINDOW_SIZE.width;
     private int MAX_FRAME_RATE = 200;
     private Thread gameThread;
@@ -29,12 +29,11 @@ public class GamePanel extends JPanel implements Runnable {
     private int tickSpeed;
     private double renderDeltaT = 0;
     private int fps;
-    private double cellSize = 4;
+    private double cellSize = 5;
     private CellGrid cellGrid = new CellGrid(
             (int)(DEFAULT_WINDOW_SIZE.width / cellSize),
             (int)(DEFAULT_WINDOW_SIZE.height / cellSize)
     );
-    private int currentMouseWheelRotation = mouse.getWheelRotation();
     private int previousMouseWheelRotation = mouse.getWheelRotation();
     private double brushRadius = 0.5;
 
@@ -43,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
             new Vector2D(10, 10), 50, 50);
     private final MaterialSwitch waterSwitch = new MaterialSwitch(CellTypes.WATER, Color.WHITE, Water.COLOR, "",
             new Vector2D(70, 10), 50, 50);
-    private final MaterialSwitch ironSwitch = new MaterialSwitch(CellTypes.IRON, Color.WHITE, Iron.COLOR, "",
+    private final MaterialSwitch ironSwitch = new MaterialSwitch(CellTypes.STEEL, Color.WHITE, Steel.COLOR, "",
             new Vector2D(130, 10), 50, 50);
     private final MaterialSwitch woodSwitch = new MaterialSwitch(CellTypes.WOOD, Color.WHITE, Wood.COLOR, "",
             new Vector2D(190, 10), 50, 50);
@@ -64,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void updateBrushRadius() {
-        currentMouseWheelRotation = mouse.getWheelRotation();
+        int currentMouseWheelRotation = mouse.getWheelRotation();
         brushRadius += (currentMouseWheelRotation - previousMouseWheelRotation) * -0.5;
         if (brushRadius < 0.5) {
             brushRadius = 0.5;

@@ -14,6 +14,7 @@ public class Lava extends Cell {
         } else {
             color = COLORS[0];
         }
+        heatPoints = 50;
     }
     public Color getColor() {
         return color;
@@ -23,6 +24,10 @@ public class Lava extends Cell {
     }
 
     public void update(CellGrid grid, int x, int y) {
+        if (heatPoints <= 0) {
+            grid.setCell(x, y, new Obsidian());
+            return;
+        }
         Cell[][] neighbors = grid.findNeighbors(x, y);
         Point direction = new Point();
         if (!CellTypes.isSolid(neighbors[1][2].getType())) {

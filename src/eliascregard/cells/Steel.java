@@ -2,11 +2,11 @@ package eliascregard.cells;
 
 import java.awt.*;
 
-public class Iron extends Cell {
+public class Steel extends Cell {
 
-    public static final Color COLOR = new Color(94, 94, 94);
+    public static final Color COLOR = new Color(152, 152, 152);
 
-    public Iron() {
+    public Steel() {
         color = COLOR;
     }
 
